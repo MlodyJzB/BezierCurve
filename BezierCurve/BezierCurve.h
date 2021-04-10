@@ -1,17 +1,14 @@
 #pragma once
-#include<tuple>
+#include<array>
 
 class BezierCurve
 {
 private:
-	std::tuple <int, int> p0;
-	std::tuple <int, int> p1;
-	std::tuple <int, int> p2;
-	std::tuple <int, int> p3;
+	std::array<std::array<int, 2>, 4> controlPoints;
 public:
 	BezierCurve();
-	BezierCurve(std::tuple<int, int> p0, std::tuple<int, int> p1, std::tuple<int, int> p2, std::tuple<int, int> p3) noexcept;
-	std::tuple<int, int> getPoint(int number);
-	void setPoint(int number, tuple <int, int> new_point);
+	BezierCurve(std::array<int, 2> p0, std::array<int, 2> p1, std::array<int, 2> p2, std::array<int, 2> p3) noexcept;
+	std::array<int, 2> getPoint(int number);
+	void setPoint(int number, std::array<int, 2> new_point);
 };
 
