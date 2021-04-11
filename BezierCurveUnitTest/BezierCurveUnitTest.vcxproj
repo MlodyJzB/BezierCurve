@@ -158,6 +158,11 @@
   <ItemGroup>
     <ClCompile Include="BezierCurveUnitTest.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BezierCurve\BezierCurve.vcxproj">
+      <Project>{b83c0d2b-fb41-4385-8b64-15890242f953}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
