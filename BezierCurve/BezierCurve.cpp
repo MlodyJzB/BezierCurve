@@ -45,3 +45,13 @@ bool BezierCurve::isEqual(BezierCurve const& curve2) const noexcept {
 	return (isPointEqual(0, curve2.getPoint(0)) && isPointEqual(1, curve2.getPoint(1)) && isPointEqual(2, curve2.getPoint(2)) && isPointEqual(3, curve2.getPoint(3)));
 }
 
+void BezierCurve::operator+=(std::array<double, 2> const& vectorAsArray) noexcept {
+	move(vectorAsArray);
+}
+
+void BezierCurve::operator-=(std::array<double, 2> const& vectorAsArray) noexcept {
+	std::array<double, 2> reverseVector;
+	reverseVector.at(0) = -1 * (vectorAsArray.at(0));
+	reverseVector.at(1) = -1 * (vectorAsArray.at(1));
+	move(reverseVector);
+}

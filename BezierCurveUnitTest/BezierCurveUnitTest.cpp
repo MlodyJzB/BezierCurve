@@ -287,6 +287,86 @@ namespace BezierCurveUnitTest
 			Assert::IsFalse(curve2.isEqual(curve1));
 		}
 
+		TEST_METHOD(TestEmptyBezierOperatorPlus)
+		{
+			BezierCurve curve;
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve += vector;
+
+			std::array<double, 2> expected_p0 = { {2.22,1} };
+			std::array<double, 2> expected_p1 = { {2.22,1} };
+			std::array<double, 2> expected_p2 = { {2.22,1} };
+			std::array<double, 2> expected_p3 = { {2.22,1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
+		}
+
+		TEST_METHOD(TestBezierOperatorPlus)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve(p1, p2, p2, p1);
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve += vector;
+
+			std::array<double, 2> expected_p0 = { {3.22,1} };
+			std::array<double, 2> expected_p1 = { {9.72,23.08} };
+			std::array<double, 2> expected_p2 = { {9.72,23.08} };
+			std::array<double, 2> expected_p3 = { {3.22,1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
+		}
+
+		TEST_METHOD(TestEmptyBezierOperatorMinus)
+		{
+			BezierCurve curve;
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve -= vector;
+
+			std::array<double, 2> expected_p0 = { {-2.22,-1} };
+			std::array<double, 2> expected_p1 = { {-2.22,-1} };
+			std::array<double, 2> expected_p2 = { {-2.22,-1} };
+			std::array<double, 2> expected_p3 = { {-2.22,-1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
+		}
+
+		TEST_METHOD(TestBezierOperatorMinus)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve(p1, p2, p2, p1);
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve -= vector;
+
+			std::array<double, 2> expected_p0 = { {-1.22,-1} };
+			std::array<double, 2> expected_p1 = { {5.28,21.08} };
+			std::array<double, 2> expected_p2 = { {5.28,21.08} };
+			std::array<double, 2> expected_p3 = { {-1.22,-1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
+		}
+
 
 	};
 }

@@ -10,10 +10,15 @@ private:
 public:
 	BezierCurve() noexcept;
 	BezierCurve(std::array<double, 2> const& p0, std::array<double, 2> const& p1, std::array<double, 2> const& p2, std::array<double, 2> const& p3) noexcept;
+
 	std::array<double, 2> getPoint(int number) const noexcept;
 	void setPoint(int number, std::array<double, 2> const& newPoint) noexcept;
 	void movePoint(int number, std::array<double, 2> const& vectorAsArray) noexcept;
 	void move(std::array<double, 2> const& vectorAsArray) noexcept;
 	bool isClosed() const noexcept;
 	bool isEqual(BezierCurve const& curve2) const noexcept;
+
+	void operator+=(std::array<double, 2> const& vectorAsArray) noexcept;
+	void operator-=(std::array<double, 2> const& vectorAsArray) noexcept;
+
 };
