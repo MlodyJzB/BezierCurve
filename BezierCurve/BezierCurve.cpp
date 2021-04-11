@@ -45,7 +45,7 @@ bool BezierCurve::isEqual(BezierCurve const& curve2) const noexcept {
 	return (isPointEqual(0, curve2.getPoint(0)) && isPointEqual(1, curve2.getPoint(1)) && isPointEqual(2, curve2.getPoint(2)) && isPointEqual(3, curve2.getPoint(3)));
 }
 
-std::array<double, 2> BezierCurve::curvePointPos(double t) const noexcept {
+std::array<double, 2> BezierCurve::curvePos(double t) const noexcept {
 	double x;
 	double y;
 	x = (1 - t) * (1 - t) * (1 - t) * getPoint(0).at(0) + 3 * (1 - t) * (1 - t) * t * getPoint(1).at(0) + 3 * (1 - t) * t * t * getPoint(2).at(0) + t * t * t * getPoint(3).at(0);
