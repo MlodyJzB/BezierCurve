@@ -24,7 +24,7 @@ void BezierCurve::movePoint(int number, std::array<double, 2> vectorAsArray) noe
 
 void BezierCurve::move(std::array<double, 2> vectorAsArray) noexcept {
 	movePoint(0, vectorAsArray);
-	movePoint(0, vectorAsArray);
-	movePoint(0, vectorAsArray);
-	movePoint(0, vectorAsArray);
+	movePoint(1, vectorAsArray);
+	movePoint(2, vectorAsArray);
+	movePoint(3, vectorAsArray);
 }

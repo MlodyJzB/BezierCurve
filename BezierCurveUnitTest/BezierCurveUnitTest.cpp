@@ -2,6 +2,19 @@
 #include "CppUnitTest.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+template<>
+inline std::wstring Microsoft::VisualStudio::CppUnitTestFramework::ToString<std::array<double, 2>>(const std::array<double, 2>& t)
+{
+	std::wstring result;
+	result += L"{";
+	for (auto& v : t)
+	{
+		result += ToString(v);
+		result += L",";
+	}
+	result += L"}";
+	return result;
+}
 
 
 namespace BezierCurveUnitTest
@@ -193,6 +206,46 @@ namespace BezierCurveUnitTest
 			Assert::AreEqual(xp3, double(3.05));
 			double yp3 = curve.getPoint(3).at(1);
 			Assert::AreEqual(yp3, double(111.21567));
+		}
+
+		TEST_METHOD(TestEmptyBezierMove)
+		{
+			BezierCurve curve;
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve.move(vector);
+
+			std::array<double, 2> expected_p0 = { {2.22,1} };
+			std::array<double, 2> expected_p1 = { {2.22,1} };
+			std::array<double, 2> expected_p2 = { {2.22,1} };
+			std::array<double, 2> expected_p3 = { {2.22,1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
+		}
+
+		TEST_METHOD(TestBezierMove)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve(p1, p2, p2, p1);
+
+			std::array<double, 2> vector = { {2.22,1} };
+
+			curve.move(vector);
+
+			std::array<double, 2> expected_p0 = { {2.22,1} };
+			std::array<double, 2> expected_p1 = { {2.22,1} };
+			std::array<double, 2> expected_p2 = { {2.22,1} };
+			std::array<double, 2> expected_p3 = { {2.22,1} };
+
+			Assert::AreEqual(curve.getPoint(0), expected_p0);
+			Assert::AreEqual(curve.getPoint(1), expected_p1);
+			Assert::AreEqual(curve.getPoint(2), expected_p2);
+			Assert::AreEqual(curve.getPoint(3), expected_p3);
 		}
 
 	};
