@@ -37,6 +37,11 @@ bool BezierCurve::isPointEqual(int number1, int number2) const noexcept {
 	return ((controlPoints.at(number1).at(0) == controlPoints.at(number2).at(0))) && (controlPoints.at(number1).at(1) == controlPoints.at(number2).at(1));
 }
 
-bool BezierCurve::isClosed() {
+bool BezierCurve::isClosed() const noexcept {
 	return isPointEqual(0, 3);
 }
+
+bool BezierCurve::isEqual(BezierCurve const& curve2) const noexcept {
+	return (isPointEqual(0, curve2.getPoint(0)) && isPointEqual(1, curve2.getPoint(1)) && isPointEqual(2, curve2.getPoint(2)) && isPointEqual(3, curve2.getPoint(3)));
+}
+

@@ -265,5 +265,28 @@ namespace BezierCurveUnitTest
 			Assert::IsFalse(curve.isClosed());
 		}
 
+		TEST_METHOD(TestBezierIsEqualTrue)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p1, p2);
+
+			Assert::IsTrue(curve1.isEqual(curve2));
+			Assert::IsTrue(curve2.isEqual(curve1));
+		}
+
+		TEST_METHOD(TestBezierIsEqualFalse)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p2, p1);
+
+			Assert::IsFalse(curve1.isEqual(curve2));
+			Assert::IsFalse(curve2.isEqual(curve1));
+		}
+
+
 	};
 }

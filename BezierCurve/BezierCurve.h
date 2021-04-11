@@ -14,6 +14,6 @@ public:
 	void setPoint(int number, std::array<double, 2> const& newPoint) noexcept;
 	void movePoint(int number, std::array<double, 2> const& vectorAsArray) noexcept;
 	void move(std::array<double, 2> const& vectorAsArray) noexcept;
-	bool isClosed();
+	bool isClosed() const noexcept;
+	bool isEqual(BezierCurve const& curve2) const noexcept;
 };
-
