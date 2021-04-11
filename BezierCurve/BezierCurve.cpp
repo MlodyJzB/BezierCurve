@@ -14,4 +14,5 @@ std::array<double, 2> BezierCurve::getPoint(int number) noexcept {
 }
 
 void BezierCurve::setPoint(int number, std::array<double, 2> new_point) {
+	controlPoints.at(number) = new_point;
 }
