@@ -367,6 +367,50 @@ namespace BezierCurveUnitTest
 			Assert::AreEqual(curve.getPoint(3), expected_p3);
 		}
 
+		TEST_METHOD(TestBezierOperatorEqualTrue)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p1, p2);
+
+			Assert::IsTrue(curve1 == curve2);
+			Assert::IsTrue(curve2 == curve1);
+		}
+
+		TEST_METHOD(TestBezierOperatorEqualFalse)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p2, p1);
+
+			Assert::IsFalse(curve1 == curve2);
+			Assert::IsFalse(curve2 == curve1);
+		}
+
+		TEST_METHOD(TestBezierOperatorNotEqualTrue)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p2, p1);
+
+			Assert::IsTrue(curve1 != curve2);
+			Assert::IsTrue(curve2 != curve1);
+		}
+
+		TEST_METHOD(TestBezierOperatorNotEqualFalse)
+		{
+			std::array<double, 2> p1 = { {1,0} };
+			std::array<double, 2> p2 = { {7.5, 22.08} };
+			BezierCurve curve1(p1, p2, p1, p2);
+			BezierCurve curve2(p1, p2, p1, p2);
+
+			Assert::IsFalse(curve1 != curve2);
+			Assert::IsFalse(curve2 != curve1);
+		}
+
 
 	};
 }
